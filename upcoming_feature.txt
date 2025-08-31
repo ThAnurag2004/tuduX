@@ -1,0 +1,18 @@
+
+## Bulk Actions
+
+PATCH   /todos/mark-all-complete   -> Mark all todos complete
+DELETE  /todos/clear-completed     -> Delete all completed todos
+
+## Filtering & Querying
+
+GET     /todos?completed=true       -> Get all completed todos
+GET     /todos?completed=false      -> Get all pending todos
+GET     /todos?search=keyword       -> Search todos by title/description
+GET     /todos?sort=createdAt&order=desc  -> Sort todos
+
+
+## Analytics / Stats
+
+GET     /todos/stats   -> Get todo stats for logged-in user
+Response: { total: 10, completed: 6, pending: 4 }
