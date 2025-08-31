@@ -25,7 +25,7 @@ In today’s busy world, productivity tools are often cluttered with unnecessary
 - **Backend:** Node.js + Express.js  
 - **Database:** PostgreSQL with Drizzle ORM  
 - **Authentication:** JWT  
-- **Deployment:** Railway
+- **Deployment:** Render
 
 ---
 
