@@ -31,13 +31,14 @@ In today’s busy world, productivity tools are often cluttered with unnecessary
 
 ## 🗂 Folder Structure (Recommended)
 
+```plaintext
 tudux/
-│── src/ # Backend code
-│── postman/ # Postman collection
-│ └── TuduX_API.postman_collection.json
-│── README.md
-│── .env.example # Sample environment variables
-
+├── src/                       # Backend code
+├── postman/                   # Postman collection
+│   └── TuduX_API.postman_collection.json
+├── README.md
+└── .env.example               # Sample environment variables
+```
 
 
 ---
