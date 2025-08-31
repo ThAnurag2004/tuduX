@@ -29,6 +29,79 @@ In today’s busy world, productivity tools are often cluttered with unnecessary
 
 ---
 
+## 🗂 Folder Structure (Recommended)
+
+tudux/
+│── src/ # Backend code
+│── postman/ # Postman collection
+│ └── TuduX_API.postman_collection.json
+│── README.md
+│── .env.example # Sample environment variables
+
+
+
+---
+
+## 🏃‍♂️ Getting Started  
+
+Follow these steps to run TuduX locally:  
+
+### 1. Clone the repo
+
+```bash
+git clone https://github.com/your-username/tudux.git
+cd tudux
+```
+
+### 2. Install dependencies
+
+```bash
+npm install
+``` 
+
+### 3. Setup environment variables
+
+Create a .env file in the root directory and add:
+```bash
+PORT=5000
+DATABASE_URL=postgresql://username:password@host:port/dbname
+JWT_SECRET=your_jwt_secret
+```
+
+### 4. Run the server
+
+```bash
+npm run dev
+```
+
+The backend will run on http://localhost:5000.
+
+### 5. Test APIs
+
+* Use Postman and import the collection inside postman/TuduX_API.postman_collection.json
+
+* Set BASE_URL and TOKEN environment variables
+
+* Start testing Auth & Todo routes
+
+
+---
+
+## Postman API Collection
+
+You can test all API routes using Postman. The collection is inside the `postman/` folder.
+
+### Steps to use:
+1. Open Postman.
+2. Click `Import` → `File` → select `postman/TuduX_API.postman_collection.json`.
+3. Set environment variables (if needed) like:
+   - `BASE_URL` = `https://tudux.onrender.com`
+   - `TOKEN` = <Your JWT Token after login>
+4. Start testing routes!
+
+
+---
+
 ## 🎯 Goal  
 The vision behind TuduX is to provide a **minimal yet powerful productivity tool** that combines simplicity with advanced features like notifications and calendar sync.  
 
