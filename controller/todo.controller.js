@@ -1,7 +1,8 @@
-import { todostable } from "../model/index.js";
+import { todostable, categoriesTable } from "../model/index.js";
 import { db } from "../db/index.js";
 import { and, eq } from "drizzle-orm";
 import { todoValidationBodySchema } from "../validation/todo.validation.js";
+import { categoryExists } from "../service/category.service.js";
 
 /* THESE ARE ALL THE BASIC CRUD OPERATIONS ROUTES */
 
@@ -37,7 +38,28 @@ export const createTodo = async function (req, res) {
       return res.status(400).json({ error: validationResult.error.format() });
     }
 
-    const { title, description, completed } = validationResult.data;
+    const { title, description, completed, categoryName } =
+      validationResult.data;
+
+    const existingCategory = await categoryExists(categoryName, req.user.id);
+
+    let createdId;
+
+    if (existingCategory) {
+      createdId = existingCategory.id;
+    } else {
+      const inserted = await db
+        .insert(categoriesTable)
+        .values({
+          name: categoryName,
+          user_id: req.user.id
+        })
+        .returning({ id: categoriesTable.id });
+
+      createdId = inserted[0].id;
+    }
+
+    console.log(createdId);
 
     const [todo] = await db
       .insert(todostable)
@@ -46,8 +68,18 @@ export const createTodo = async function (req, res) {
         description,
         completed,
         user_id: req.user.id,
+        category_id: createdId,
       })
-      .returning();
+      .returning({
+        id: todostable.id,
+        title: todostable.title,
+        description: todostable.description,
+        completed: todostable.completed,
+        createdAt: todostable.createdAt,
+        updatedAt: todostable.updatedAt,
+        user_id: todostable.user_id,
+        category_id: todostable.category_id,
+      });
 
     return res.status(200).json(todo);
   } catch (error) {

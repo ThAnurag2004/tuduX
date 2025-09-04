@@ -2,6 +2,7 @@ import 'dotenv/config'
 import express from 'express';
 import userRouter from './routes/user.routes.js'
 import todoRouter from './routes/todo.routes.js'
+import categoryRouter from './routes/category.routes.js'
 import {authMiddleware} from './middleware/auth.middleware.js'
 const app = express();
 const PORT = process.env.PORT ?? 8000;
@@ -16,5 +17,6 @@ app.get('/', (req,res)=>{
 
 app.use('/auth', userRouter)
 app.use('/todo', todoRouter)
+app.use('/', categoryRouter)
 
 app.listen(PORT, () => console.log(`Server is running on Port ${PORT}`))
